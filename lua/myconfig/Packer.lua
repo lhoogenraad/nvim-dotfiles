@@ -28,8 +28,11 @@ return require('packer').startup(function(use)
 	use 'ThePrimeagen/harpoon'
 	use 'ggandor/leap.nvim'
 	use 'mbbill/undotree'
-	use 'bluz71/vim-nightfly-colors'
+	-- Colour themes
+	use 'NLKNguyen/papercolor-theme'
+	use 'ful1e5/onedark.nvim'
 	use 'folke/lsp-colors.nvim'
+
 	use {
 		"windwp/nvim-autopairs",
 		config = function() require("nvim-autopairs").setup {} end
