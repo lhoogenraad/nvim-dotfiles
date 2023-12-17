@@ -30,6 +30,7 @@ return require('packer').startup(function(use)
 	use 'mbbill/undotree'
 	-- Colour themes
 	use 'NLKNguyen/papercolor-theme'
+	use "folke/tokyonight.nvim"
 	use 'ful1e5/onedark.nvim'
 	use 'folke/lsp-colors.nvim'
 
