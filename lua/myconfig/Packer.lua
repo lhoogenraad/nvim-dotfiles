@@ -25,9 +25,14 @@ return require('packer').startup(function(use)
 			{'L3MON4D3/LuaSnip'},
 		}
 	}
+	
+	-- git
+	use 'lewis6991/gitsigns.nvim'
+
 	use 'ThePrimeagen/harpoon'
 	use 'ggandor/leap.nvim'
 	use 'mbbill/undotree'
+
 	-- Colour themes
 	use 'NLKNguyen/papercolor-theme'
 	use "folke/tokyonight.nvim"
