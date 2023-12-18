@@ -49,10 +49,7 @@ return require('packer').startup(function(use)
 			}
 		end
 	}
-	use {
-		'nvim-lualine/lualine.nvim',
-		requires = { 'nvim-tree/nvim-web-devicons', opt = true }
-	}
+	use 'windwp/windline.nvim'
 	use {
 		'numToStr/Comment.nvim',
 		config = function()
