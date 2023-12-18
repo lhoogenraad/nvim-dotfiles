@@ -224,7 +224,7 @@ local explorer = {
     filetypes = { 'fern', 'NvimTree', 'lir' },
     active = {
         { '  ', { 'white', 'magenta_b' } },
-        { helper.separators.slant_right, { 'magenta_b', 'NormalBg' } },
+        { helper.separators.slant_left, { 'magenta_b', 'NormalBg' } },
         { b_components.divider, '' },
         { b_components.file_name(''), { 'NormalFg', 'NormalBg' } },
     },
