@@ -49,19 +49,18 @@ return require('packer').startup(function(use)
 			}
 		end
 	}
-	use 'folke/trouble.nvim'
 	use {
 		'nvim-lualine/lualine.nvim',
 		requires = { 'nvim-tree/nvim-web-devicons', opt = true }
 	}
-	use 'ryanoasis/vim-devicons'
-	use 'lewis6991/gitsigns.nvim'
 	use {
 		'numToStr/Comment.nvim',
 		config = function()
 			require('Comment').setup()
 		end
 	}
+
+	use 'nvim-tree/nvim-web-devicons'
 
 	use({
 		"kylechui/nvim-surround",
