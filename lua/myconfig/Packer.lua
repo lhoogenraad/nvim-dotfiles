@@ -25,6 +25,7 @@ return require('packer').startup(function(use)
 			{'L3MON4D3/LuaSnip'},
 		}
 	}
+
 	
 	-- git
 	use 'lewis6991/gitsigns.nvim'
@@ -85,5 +86,7 @@ return require('packer').startup(function(use)
 
 	use 'DanilaMihailov/beacon.nvim'
 
-
+	use 'ErichDonGubler/lsp_lines.nvim'
+	use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
+	use 'lewis6991/impatient.nvim'
 end)

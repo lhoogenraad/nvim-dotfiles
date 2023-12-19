@@ -1,3 +1,4 @@
+require("impatient").enable_profile()
 require("myconfig.remap")
 require("myconfig.set")
 require('Comment').setup()
