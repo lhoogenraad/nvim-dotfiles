@@ -7,4 +7,8 @@ function ColorMyPencils(color)
 
 end
 
+require('hlargs').setup{
+	color = '#45ba8b'
+}
+
 ColorMyPencils()
