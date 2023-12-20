@@ -87,6 +87,7 @@ return require('packer').startup(function(use)
 use {"folke/noice.nvim", requires = {"MunifTanjim/nui.nvim", "rcarriga/nvim-notify"}}
 
 use 'DanilaMihailov/beacon.nvim'
+use 'willothy/veil.nvim'
 
 use 'ErichDonGubler/lsp_lines.nvim'
 use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
