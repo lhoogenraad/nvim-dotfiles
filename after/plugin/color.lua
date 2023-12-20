@@ -10,5 +10,6 @@ end
 require('hlargs').setup{
 	color = '#45ba8b'
 }
+vim.cmd([[:highlight Nontext guibg=#222222 guifg=#ffffff]])
 
 ColorMyPencils()

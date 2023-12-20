@@ -26,7 +26,7 @@ return require('packer').startup(function(use)
 		}
 	}
 
-	
+
 	-- git
 	use 'lewis6991/gitsigns.nvim'
 
@@ -85,9 +85,24 @@ return require('packer').startup(function(use)
 	end
 }
 
-	use 'DanilaMihailov/beacon.nvim'
+use {"folke/noice.nvim", requires = {"MunifTanjim/nui.nvim", "rcarriga/nvim-notify"}}
 
-	use 'ErichDonGubler/lsp_lines.nvim'
-	use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
-	use 'lewis6991/impatient.nvim'
+use 'DanilaMihailov/beacon.nvim'
+
+use 'ErichDonGubler/lsp_lines.nvim'
+use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
+use 'lewis6991/impatient.nvim'
+use 'Bekaboo/deadcolumn.nvim'
+use({
+	"utilyre/barbecue.nvim",
+	tag = "*",
+	requires = {
+		"SmiteshP/nvim-navic",
+		"nvim-tree/nvim-web-devicons", -- optional dependency
+	},
+	after = "nvim-web-devicons", -- keep this if you're using NvChad
+	config = function()
+		require("barbecue").setup()
+	end,
+})
 end)
