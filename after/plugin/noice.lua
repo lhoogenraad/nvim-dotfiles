@@ -195,5 +195,7 @@ require("noice").setup({
   status = {}, --- @see section on statusline components
   ---@type NoiceFormatOptions
   format = {}, --- @see section on formatting
+
+  vim.api.nvim_set_hl(0, "NotifyBackground", { bg = "none" })
 })
 
