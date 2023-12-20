@@ -92,7 +92,7 @@ use 'willothy/veil.nvim'
 use 'ErichDonGubler/lsp_lines.nvim'
 use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
 use 'lewis6991/impatient.nvim'
-use 'Bekaboo/deadcolumn.nvim'
+use "m4xshen/smartcolumn.nvim"
 use({
 	"utilyre/barbecue.nvim",
 	tag = "*",
