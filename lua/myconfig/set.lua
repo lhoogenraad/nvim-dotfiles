@@ -9,5 +9,3 @@ vim.opt["shiftwidth"] = 4
 vim.cmd([[:highlight LeapBackDrop guifg=#f4cafc guibg=#222222]])
 vim.cmd([[:highlight HighlightUndo guibg=#b8645e]])
 vim.cmd([[:highlight HighlightRedo guibg=#50913a]])
-vim.cmd([[:highlight Beacon ctermbg=white]])
-vim.cmd([[setlocal colorcolumn=80]])

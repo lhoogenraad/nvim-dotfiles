@@ -199,3 +199,10 @@ require("noice").setup({
   vim.api.nvim_set_hl(0, "NotifyBackground", { bg = "none" })
 })
 
+require("notify").setup({
+	render="minimal",
+	fps=120,
+	stages = 'slide',
+	timeout=100,
+	background_colour="#00000",
+})
