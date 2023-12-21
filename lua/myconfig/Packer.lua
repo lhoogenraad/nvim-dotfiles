@@ -48,15 +48,6 @@ return require('packer').startup(function(use)
 		config = function() require("nvim-autopairs").setup {} end
 	}
 
-	use {
-		'jinh0/eyeliner.nvim',
-		config = function()
-			require('eyeliner').setup {
-				highlight_on_key=true,
-				dim=false
-			}
-		end
-	}
 	use 'windwp/windline.nvim'
 	use {
 		'numToStr/Comment.nvim',
@@ -78,32 +69,25 @@ return require('packer').startup(function(use)
 	use 'tzachar/highlight-undo.nvim'
 	use 'karb94/neoscroll.nvim'
 
-	use { 'gen740/SmoothCursor.nvim',
-	config = function()
-		require('smoothcursor').setup()
-	end
-}
+	use {"folke/noice.nvim", requires = {"MunifTanjim/nui.nvim", "rcarriga/nvim-notify"}}
 
-use {"folke/noice.nvim", requires = {"MunifTanjim/nui.nvim", "rcarriga/nvim-notify"}}
+	use 'DanilaMihailov/beacon.nvim'
+	use 'sontungexpt/stcursorword'
+	use 'willothy/veil.nvim'
 
-use 'DanilaMihailov/beacon.nvim'
-use 'sontungexpt/stcursorword'
-use 'willothy/veil.nvim'
-
-use 'ErichDonGubler/lsp_lines.nvim'
-use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
-use 'lewis6991/impatient.nvim'
-use "m4xshen/smartcolumn.nvim"
-use({
-	"utilyre/barbecue.nvim",
-	tag = "*",
-	requires = {
-		"SmiteshP/nvim-navic",
-		"nvim-tree/nvim-web-devicons", -- optional dependency
-	},
-	after = "nvim-web-devicons", -- keep this if you're using NvChad
-	config = function()
-		require("barbecue").setup()
-	end,
-})
+	use 'ErichDonGubler/lsp_lines.nvim'
+	use {'kevinhwang91/nvim-ufo', requires = 'kevinhwang91/promise-async'}
+	use 'lewis6991/impatient.nvim'
+	use({
+		"utilyre/barbecue.nvim",
+		tag = "*",
+		requires = {
+			"SmiteshP/nvim-navic",
+			"nvim-tree/nvim-web-devicons", -- optional dependency
+		},
+		after = "nvim-web-devicons", -- keep this if you're using NvChad
+		config = function()
+			require("barbecue").setup()
+		end,
+	})
 end)
