@@ -203,6 +203,6 @@ require("notify").setup({
 	render="minimal",
 	fps=120,
 	stages = 'slide',
-	timeout=100,
+	timeout=400,
 	background_colour="#00000",
 })
