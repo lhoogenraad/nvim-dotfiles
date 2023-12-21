@@ -40,6 +40,7 @@ return require('packer').startup(function(use)
 	use 'ful1e5/onedark.nvim'
 	use 'folke/lsp-colors.nvim'
 	use 'm-demare/hlargs.nvim'
+	use 'folke/twilight.nvim'
 
 	use {
 		"windwp/nvim-autopairs",
@@ -73,8 +74,6 @@ return require('packer').startup(function(use)
 		end
 	})
 
-	use 'HiPhish/nvim-ts-rainbow2'
-	use 'lukas-reineke/indent-blankline.nvim'
 	use 'tzachar/highlight-undo.nvim'
 	use 'karb94/neoscroll.nvim'
 
