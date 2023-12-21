@@ -29,6 +29,7 @@ return require('packer').startup(function(use)
 
 	-- git
 	use 'lewis6991/gitsigns.nvim'
+	use 'akinsho/git-conflict.nvim'
 
 	use 'ThePrimeagen/harpoon'
 	use 'ggandor/leap.nvim'
