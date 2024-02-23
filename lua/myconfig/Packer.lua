@@ -5,7 +5,10 @@ return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
 
 	-- TS
-	use ({'nvim-treesitter/nvim-treesitter', {run = ':TSUpdate'}})
+    use {
+        'nvim-treesitter/nvim-treesitter',
+        run = ':TSUpdate'
+    }
 	use {
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v3.x',
@@ -26,6 +29,7 @@ return require('packer').startup(function(use)
 	-- git
 	use 'lewis6991/gitsigns.nvim'
 	use 'akinsho/git-conflict.nvim'
+	use 'tpope/vim-fugitive'
 	
 	-- file/buffer navigation
 	use {
