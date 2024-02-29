@@ -1,7 +1,7 @@
 -- gitsigns setup
 require('gitsigns').setup{
 signs = {
-    add          = { text = '│' },
+    add          = { text = '+' },
     change       = { text = '│' },
     delete       = { text = '_' },
     topdelete    = { text = '‾' },
@@ -24,6 +24,14 @@ vim.keymap.set("n", "<leader>bl", function()
         end)
 vim.keymap.set("n", "<leader>gt", function()
             vim.cmd.Git('status')
+        end)
+vim.keymap.set("n", "<leader>gp", function()
+            vim.cmd.Git('pull')
+        end)
+vim.keymap.set("n", "<leader>gc", function()
+            vim.cmd.Git('add .');
+			vim.cmd.Git();
+			vim.cmd.Git('commit');
         end)
 
 local ThePrimeagen_Fugitive = vim.api.nvim_create_augroup("ThePrimeagen_Fugitive", {})
