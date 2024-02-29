@@ -33,6 +33,9 @@ vim.keymap.set("n", "<leader>gc", function()
 			vim.cmd.Git();
 			vim.cmd.Git('commit');
         end)
+vim.keymap.set("n", "<leader>gg", function()
+            vim.cmd.Git('push');
+        end)
 
 local ThePrimeagen_Fugitive = vim.api.nvim_create_augroup("ThePrimeagen_Fugitive", {})
 
