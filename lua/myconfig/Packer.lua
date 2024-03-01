@@ -92,4 +92,8 @@ return require('packer').startup(function(use)
 			require("barbecue").setup()
 		end,
 	})
+
+
+	-- chat GPT
+	use 'piersolenski/wtf.nvim'
 end)
