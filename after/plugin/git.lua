@@ -30,7 +30,7 @@ vim.keymap.set("n", "<leader>gp", function()
         end)
 vim.keymap.set("n", "<leader>gc", function()
             vim.cmd.Git('add .');
-			-- vim.cmd.Git();
+			vim.cmd.Git();
 			vim.cmd.Git('commit');
         end)
 vim.keymap.set("n", "<leader>gg", function()
