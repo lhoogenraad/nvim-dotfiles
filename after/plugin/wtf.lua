@@ -2,7 +2,7 @@ require("wtf").setup({
     -- Default AI popup type
     popup_type = "popup",
     -- An alternative way to set your API key
-    openai_api_key = "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",
+    openai_api_key = "",
     -- ChatGPT Model
     openai_model_id = "gpt-4",
     -- Send code as well as diagnostics
