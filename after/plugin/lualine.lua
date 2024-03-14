@@ -5,6 +5,7 @@ local sep = helper.separators
 local animation = require('wlanimation')
 local efffects = require('wlanimation.effects')
 local git_comps = require('windline.components.git')
+local b_components = require('windline.components.basic')
 
 local state = _G.WindLine.state
 
@@ -12,10 +13,21 @@ local hl_list = {
     Black = { 'white', 'black' },
     Inactive = { 'InactiveFg', 'InactiveBg' },
     Active = { 'ActiveFg', 'ActiveBg' },
+	None = { 'none', 'none' }
 }
 local basic = {}
 
 basic.divider = { '%=', hl_list.Black }
+basic.inactive_divider = {
+	name = 'inactive_divider',
+	text = function()
+		return { 
+			{'   ', { 'InactiveBg', 'InactiveBg' }},
+			{ sep.right_rounded, { 'InactiveBg', 'black' } },
+			{ b_components.divider, hl_list.None },
+		}
+	end,
+}
 
 basic.space = { ' ', '' }
 basic.line_col = { [[ %3l:%-2c ]], hl_list.Black }
@@ -251,11 +263,7 @@ local default = {
     },
     inactive = {
         basic.file_name_inactive,
-        basic.divider,
-        basic.divider,
-        basic.line_col_inactive,
-        { '', { 'white', 'InactiveBg' } },
-        basic.progress_inactive,
+		basic.inactive_divider,
     },
 }
 
