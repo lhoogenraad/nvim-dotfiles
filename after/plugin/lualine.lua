@@ -127,7 +127,6 @@ basic.vi_git_branch = {
 		end
 		return ''
 	end,
-	click = change_wave_color
 }
 
 basic.vi_git_branch_inactive = {
@@ -141,7 +140,6 @@ basic.vi_git_branch_inactive = {
 		end
 		return ''
 	end,
-	click = change_wave_color
 }
 
 
