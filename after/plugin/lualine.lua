@@ -130,6 +130,21 @@ basic.vi_git_branch = {
 	click = change_wave_color
 }
 
+basic.vi_git_branch_inactive = {
+	name = 'vi_git_branch_inactive',
+	width = 150,
+	text = function(bufnr)
+		if git_comps.is_git(bufnr) then
+			return {
+				{ git_comps.git_branch(), hl_list.Inactive},
+			}
+		end
+		return ''
+	end,
+	click = change_wave_color
+}
+
+
 basic.vi_mode_sep = {
     name = 'vi_mode_sep',
     hl_colors = {
@@ -263,6 +278,7 @@ local default = {
     },
     inactive = {
         basic.file_name_inactive,
+		basic.vi_git_branch_inactive,
 		basic.inactive_divider,
     },
 }
