@@ -1,294 +1,288 @@
 local windline = require('windline')
 local helper = require('windline.helpers')
+local utils = require('windline.utils')
 local sep = helper.separators
-local b_components = require('windline.components.basic')
-local state = _G.WindLine.state
-local vim_components = require('windline.components.vim')
-local HSL = require('wlanimation.utils')
-
-local lsp_comps = require('windline.components.lsp')
+local animation = require('wlanimation')
+local efffects = require('wlanimation.effects')
 local git_comps = require('windline.components.git')
+
+local state = _G.WindLine.state
 
 local hl_list = {
     Black = { 'white', 'black' },
-    White = { 'black', 'white' },
-    Normal = { 'NormalFg', 'NormalBg' },
     Inactive = { 'InactiveFg', 'InactiveBg' },
     Active = { 'ActiveFg', 'ActiveBg' },
 }
 local basic = {}
 
-local airline_colors = {}
+basic.divider = { '%=', hl_list.Black }
 
-airline_colors.a = {
-    NormalSep = { 'magenta_a', 'magenta_b' },
-    InsertSep = { 'green_a', 'green_b' },
-    VisualSep = { 'yellow_a', 'yellow_b' },
-    ReplaceSep = { 'blue_a', 'blue_b' },
-    CommandSep = { 'red_a', 'red_b' },
-    Normal = { 'black', 'magenta_a' },
-    Insert = { 'black', 'green_a' },
-    Visual = { 'black', 'yellow_a' },
-    Replace = { 'black', 'blue_a' },
-    Command = { 'black', 'red_a' },
-}
+basic.space = { ' ', '' }
+basic.line_col = { [[ %3l:%-2c ]], hl_list.Black }
+basic.progress = { [[%3p%% ]], hl_list.Black }
+basic.bg = { ' ', 'StatusLine' }
+basic.file_name_inactive = { '%f', hl_list.Inactive }
+basic.line_col_inactive = { [[ %3l:%-2c ]], hl_list.Inactive }
+basic.progress_inactive = { [[%3p%% ]], hl_list.Inactive }
 
-airline_colors.b = {
-    NormalSep = { 'magenta_b', 'magenta_c' },
-    InsertSep = { 'green_b', 'green_c' },
-    VisualSep = { 'yellow_b', 'yellow_c' },
-    ReplaceSep = { 'blue_b', 'blue_c' },
-    CommandSep = { 'red_b', 'red_c' },
-    Normal = { 'white', 'magenta_b' },
-    Insert = { 'white', 'green_b' },
-    Visual = { 'white', 'yellow_b' },
-    Replace = { 'white', 'blue_b' },
-    Command = { 'white', 'red_b' },
-}
+utils.change_mode_name({
+    ['n'] = { ' NORMAL', 'Normal' },
+    ['no'] = { ' O-PENDING', 'Visual' },
+    ['nov'] = { ' O-PENDING', 'Visual' },
+    ['noV'] = { ' O-PENDING', 'Visual' },
+    ['no'] = { ' O-PENDING', 'Visual' },
+    ['niI'] = { ' NORMAL', 'Normal' },
+    ['niR'] = { ' NORMAL', 'Normal' },
+    ['niV'] = { ' NORMAL', 'Normal' },
+    ['v'] = { '🧐 VISUAL', 'Visual' },
+    ['V'] = { '🧐 V-LINE', 'Visual' },
+    [''] = { '🧐 V-BLOCK', 'Visual' },
+    ['s'] = { ' SELECT', 'Visual' },
+    ['S'] = { ' S-LINE', 'Visual' },
+    [''] = { ' S-BLOCK', 'Visual' },
+    ['i'] = { ' INSERT', 'Insert' },
+    ['ic'] = { ' INSERT', 'Insert' },
+    ['ix'] = { ' INSERT', 'Insert' },
+    ['R'] = { ' REPLACE', 'Replace' },
+    ['Rc'] = { ' REPLACE', 'Replace' },
+    ['Rv'] = { 'V-REPLACE', 'Normal' },
+    ['Rx'] = { ' REPLACE', 'Normal' },
+    ['c'] = { ' COMMAND', 'Command' },
+    ['cv'] = { ' COMMAND', 'Command' },
+    ['ce'] = { ' COMMAND', 'Command' },
+    ['r'] = { ' REPLACE', 'Replace' },
+    ['rm'] = { ' MORE', 'Normal' },
+    ['r?'] = { ' CONFIRM', 'Normal' },
+    ['!'] = { ' SHELL', 'Normal' },
+    ['t'] = { ' TERMINAL', 'Command' },
+})
 
-airline_colors.c = {
-    NormalSep = { 'magenta_c', 'NormalBg' },
-    InsertSep = { 'green_c', 'NormalBg' },
-    VisualSep = { 'yellow_c', 'NormalBg' },
-    ReplaceSep = { 'blue_c', 'NormalBg' },
-    CommandSep = { 'red_c', 'NormalBg' },
-    Normal = { 'white', 'magenta_c' },
-    Insert = { 'white', 'green_c' },
-    Visual = { 'white', 'yellow_c' },
-    Replace = { 'white', 'blue_c' },
-    Command = { 'white', 'red_c' },
-}
-
-basic.divider = { b_components.divider, hl_list.Normal }
-
-local width_breakpoint = 100
-
-basic.section_a = {
-    hl_colors = airline_colors.a,
-    text = function(_,_,width)
-        if width > width_breakpoint then
-            return {
-                { ' ' .. state.mode[1] .. ' ', state.mode[2] },
-                { sep.right_filled, state.mode[2] .. 'Sep' },
-            }
-        end
-        return {
-            { ' ' .. state.mode[1]:sub(1, 1) .. ' ', state.mode[2] },
-            { sep.right_filled, state.mode[2] .. 'Sep' },
-        }
-    end,
-}
-
-
-basic.section_b = {
-    hl_colors = airline_colors.b,
-    text = function(bufnr,_, width)
-        if width > width_breakpoint and git_comps.is_git(bufnr) then
-            return {
-                { git_comps.git_branch() , state.mode[2] },
-                { ' ', '' },
-                { sep.right_filled, state.mode[2] .. 'Sep' },
-            }
-        end
-        return { { sep.right_filled, state.mode[2] .. 'Sep' } }
-    end,
-}
-
-
-basic.section_c = {
-    hl_colors = airline_colors.c,
-    text = function()
-        return {
-            { ' ', state.mode[2] },
-            { b_components.cache_file_name('[No Name]', 'unique')},
-            { ' '},
-            { sep.right_filled, state.mode[2] .. 'Sep' },
-        }
-    end,
-}
-
-basic.section_x = {
-    hl_colors = airline_colors.c,
-    text = function(_,_,width)
-        if width > width_breakpoint then
-            return {
-            { sep.left_filled, state.mode[2] .. 'Sep' },
-            { ' ', state.mode[2] },
-            { b_components.file_encoding()},
-            { ' ' },
-            { b_components.file_format({ icon = true }) },
-            { ' ' },
-            }
-        end
-        return {
-            { sep.left_filled, state.mode[2] .. 'Sep' },
-        }
-    end,
-}
-
-basic.section_y = {
-    hl_colors = airline_colors.b,
-    text = function(_,_,width)
-        if width > width_breakpoint then
-            return {
-                { sep.left_filled, state.mode[2] .. 'Sep' },
-                { b_components.cache_file_type({ icon = true }), state.mode[2] },
-                { ' ' },
-            }
-        end
-        return { { sep.left_filled, state.mode[2] .. 'Sep' } }
-    end,
-}
-
-basic.section_z = {
-    hl_colors = airline_colors.a,
-    text = function(_,_,width)
-        if width > width_breakpoint then
-            return {
-                { sep.left_filled, state.mode[2] .. 'Sep' },
-                { '', state.mode[2] },
-                { b_components.progress_lua},
-                { ' '},
-                { b_components.line_col_lua},
-            }
-        end
-        return {
-            { sep.left_filled, state.mode[2] .. 'Sep' },
-            { ' ', state.mode[2] },
-            { b_components.line_col_lua, state.mode[2] },
-        }
-    end,
-}
-
-basic.lsp_diagnos = {
-    name = 'diagnostic',
+basic.vi_mode = {
+    name = 'vi_mode',
     hl_colors = {
-        red = { 'red', 'NormalBg' },
-        yellow = { 'yellow', 'NormalBg' },
-        blue = { 'blue', 'NormalBg' },
+        Normal = { 'white', 'black' },
+        Insert = { 'black', 'red' },
+        Visual = { 'black', 'green' },
+        Replace = { 'black', 'cyan' },
+        Command = { 'black', 'yellow' },
     },
-    text = function(bufnr)
-        if lsp_comps.check_lsp(bufnr) then
-            return {
-                { lsp_comps.lsp_error({ format = '  %s', show_zero = true }), 'red' },
-                { lsp_comps.lsp_warning({ format = '  %s', show_zero = true }), 'yellow' },
-                { lsp_comps.lsp_hint({ format = '  %s', show_zero = true }), 'blue' },
-            }
-        end
-        return { ' ', 'red' }
+    text = function()
+        return ' ' .. state.mode[1] .. ' '
+    end,
+    hl = function()
+        return state.mode[2]
     end,
 }
 
-basic.git = {
-    name = 'git',
-    width = width_breakpoint,
+basic.vi_git_changes = {
+    width = 150,
     hl_colors = {
-        green = { 'green', 'NormalBg' },
-        red = { 'red', 'NormalBg' },
-        blue = { 'blue', 'NormalBg' },
+        green = { 'green', 'black' },
+        red = { 'red', 'black' },
+        blue = { 'blue', 'black' },
     },
     text = function(bufnr)
         if git_comps.is_git(bufnr) then
             return {
-                { git_comps.diff_added({ format = '  %s' }), 'green' },
+                { ' ', '' },
+                { git_comps.diff_added({ format = ' %s' }), 'green' },
                 { git_comps.diff_removed({ format = '  %s' }), 'red' },
-                { git_comps.diff_changed({ format = ' 柳%s' }), 'blue' },
+                { git_comps.diff_changed({ format = '  %s' }), 'blue' },
             }
         end
         return ''
     end,
 }
-local quickfix = {
-    filetypes = { 'qf', 'Trouble' },
-    active = {
-        { '🚦 Quickfix ', { 'white', 'black' } },
-        { helper.separators.slant_right, { 'black', 'black_light' } },
-        {
-            function()
-                return vim.fn.getqflist({ title = 0 }).title
-            end,
-            { 'cyan', 'black_light' },
-        },
-        { ' Total : %L ', { 'cyan', 'black_light' } },
-        { helper.separators.slant_right, { 'black_light', 'InactiveBg' } },
-        { ' ', { 'InactiveFg', 'InactiveBg' } },
-        basic.divider,
-        { helper.separators.slant_right, { 'InactiveBg', 'black' } },
-        { '🧛 ', { 'white', 'black' } },
-    },
-    always_active = true,
-    show_last_status = true
+
+basic.vi_git_changes_sep = {
+	name = 'vi_git_changes_sep ',
+	text = function()
+		return sep.right_rounded
+	end,
+	hl = function()
+		return {'black', 'black'}
+	end,
 }
 
-local explorer = {
-    filetypes = { 'fern', 'NvimTree', 'lir' },
-    active = {
-        { '  ', { 'white', 'magenta_b' } },
-        { helper.separators.slant_left, { 'magenta_b', 'NormalBg' } },
-        { b_components.divider, '' },
-        { b_components.file_name(''), { 'NormalFg', 'NormalBg' } },
+basic.vi_git_branch = {
+	name = 'vi_git_branch ',
+	width = 150,
+	text = function(bufnr)
+		if git_comps.is_git(bufnr) then
+			return {
+				{ git_comps.git_branch(), { 'waveleft1', 'black' }},
+			}
+		end
+		return ''
+	end,
+	click = change_wave_color
+}
+
+basic.vi_mode_sep = {
+    name = 'vi_mode_sep',
+    hl_colors = {
+        Normal = { 'black', 'black' },
+        Insert = { 'red', 'black' },
+        Visual = { 'green', 'black' },
+        Replace = { 'cyan', 'black' },
+        Command = { 'yellow', 'black' },
     },
-    always_active = true,
-    show_last_status = true
+    text = function()
+        return sep.right_rounded
+    end,
+    hl = function()
+        return state.mode[2]
+    end,
+}
+
+basic.file_name = {
+    text = function()
+        local name = vim.fn.expand('%:p:t')
+        if name == '' then
+            name = '[No Name]'
+        end
+        return { 
+			{ name .. ' ' , {'waveleft1', 'black'}}
+		}
+    end,
+    hl_colors = { 'FilenameFg', 'FilenameBg' },
+}
+
+local status_color = 'blue'
+local change_wave_color = function()
+    local anim_colors = {
+        '#7d0180',
+        '#a112a3',
+        '#871dab',
+        '#892fc4',
+        '#6a32bf',
+        '#7348d9',
+        '#8b61ed',
+        '#9f7af5',
+    }
+    if status_color == 'blue' then
+		anim_colors = {
+			'#7d0180',
+			'#a112a3',
+			'#871dab',
+			'#892fc4',
+			'#6a32bf',
+			'#7348d9',
+			'#8b61ed',
+			'#9f7af5',
+		}
+        status_color = 'yellow'
+    else
+        status_color = 'blue'
+    end
+
+    animation.stop_all()
+    animation.animation({
+        data = {
+            { 'waveleft1', efffects.list_color(anim_colors, 6) },
+            { 'waveleft2', efffects.list_color(anim_colors, 5) },
+            { 'waveleft3', efffects.list_color(anim_colors, 4) },
+            { 'waveleft4', efffects.list_color(anim_colors, 3) },
+            { 'waveleft5', efffects.list_color(anim_colors, 2) },
+        },
+        timeout = 100,
+        delay = 200,
+        interval = 150,
+    })
+
+    animation.animation({
+        data = {
+            { 'waveright1', efffects.list_color(anim_colors, 2) },
+            { 'waveright2', efffects.list_color(anim_colors, 3) },
+            { 'waveright3', efffects.list_color(anim_colors, 4) },
+            { 'waveright4', efffects.list_color(anim_colors, 5) },
+            { 'waveright5', efffects.list_color(anim_colors, 6) },
+        },
+        timeout = 100,
+        delay = 200,
+        interval = 150,
+    })
+end
+
+local wave_left = {
+    text = function()
+        return {
+            { sep.right_rounded .. ' ', { 'waveleft5', 'waveleft1' } },
+            { sep.right_rounded .. ' ', { 'waveleft1', 'waveleft2' } },
+            { sep.right_rounded .. ' ', { 'waveleft2', 'waveleft3' } },
+            { sep.right_rounded .. ' ', { 'waveleft3', 'waveleft4' } },
+            { sep.right_rounded .. ' ', { 'waveleft4', 'waveleft5' } },
+            { sep.right_rounded .. ' ', { 'waveleft5', 'black' } },
+        }
+    end,
+    click = change_wave_color,
+}
+
+local wave_right = {
+    text = function()
+        return {
+            { ' ' .. sep.left_rounded, { 'waveright1', 'black' } },
+            { ' ' .. sep.left_rounded, { 'waveright2', 'waveright1' } },
+            { ' ' .. sep.left_rounded, { 'waveright3', 'waveright2' } },
+            { ' ' .. sep.left_rounded, { 'waveright4', 'waveright3' } },
+            { ' ' .. sep.left_rounded, { 'waveright5', 'waveright4' } },
+            { ' ' .. sep.left_rounded, { 'waveright1', 'waveright5' } },
+        }
+    end,
+    click = change_wave_color,
 }
 
 local default = {
     filetypes = { 'default' },
     active = {
-        basic.section_a,
-        basic.section_b,
-        basic.section_c,
-        basic.lsp_diagnos,
-        { vim_components.search_count(), { 'cyan', 'NormalBg' } },
+        basic.vi_mode,
+        basic.vi_mode_sep,
+		basic.space,
+		basic.vi_git_changes,
+        basic.vi_git_changes_sep,
+		basic.space,
+        basic.file_name,
+        wave_left,
         basic.divider,
-        basic.git,
-        basic.section_x,
-        basic.section_y,
-        basic.section_z,
+        wave_right,
+		basic.vi_git_branch,
+        basic.line_col,
+        basic.progress,
     },
     inactive = {
-        { b_components.full_file_name, hl_list.Inactive },
-        { b_components.divider, hl_list.Inactive },
-        { b_components.line_col, hl_list.Inactive },
-        { b_components.progress, hl_list.Inactive },
+        basic.file_name_inactive,
+        basic.divider,
+        basic.divider,
+        basic.line_col_inactive,
+        { '', { 'white', 'InactiveBg' } },
+        basic.progress_inactive,
     },
 }
 
 windline.setup({
     colors_name = function(colors)
-        local mod = function (c, value)
-            if vim.o.background == 'light' then
-                return HSL.rgb_to_hsl(c):tint(value):to_rgb()
-            end
-            return HSL.rgb_to_hsl(c):shade(value):to_rgb()
-        end
+        colors.FilenameFg = colors.white
+        colors.FilenameBg = colors.black_light
 
-        colors.magenta_a = colors.magenta
-        colors.magenta_b = mod(colors.magenta,0.5)
-        colors.magenta_c = mod(colors.magenta,0.7)
+        colors.wavedefault = colors.white_light
+        colors.waveleft1 = colors.wavedefault
+        colors.waveleft2 = colors.wavedefault
+        colors.waveleft3 = colors.wavedefault
+        colors.waveleft4 = colors.wavedefault
+        colors.waveleft5 = colors.wavedefault
 
-        colors.yellow_a = colors.yellow
-        colors.yellow_b = mod(colors.yellow,0.5)
-        colors.yellow_c = mod(colors.yellow,0.7)
-
-        colors.blue_a = colors.blue
-        colors.blue_b = mod(colors.blue,0.5)
-        colors.blue_c = mod(colors.blue,0.7)
-
-        colors.green_a = colors.green
-        colors.green_b = mod(colors.green,0.5)
-        colors.green_c = mod(colors.green,0.7)
-
-        colors.red_a = colors.red
-        colors.red_b = mod(colors.red,0.5)
-        colors.red_c = mod(colors.red,0.7)
-
+        colors.waveright1 = colors.wavedefault
+        colors.waveright2 = colors.wavedefault
+        colors.waveright3 = colors.wavedefault
+        colors.waveright4 = colors.wavedefault
+        colors.waveright5 = colors.wavedefault
         return colors
     end,
     statuslines = {
         default,
-        quickfix,
-        explorer,
     },
 })
 
+vim.defer_fn(function()
+    change_wave_color()
+end, 100)
