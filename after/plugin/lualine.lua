@@ -111,7 +111,7 @@ basic.file = {
                 { b_components.line_col_lua, 'white' },
                 { b_components.progress_lua, '' },
                 { ' ', '' },
-                { b_components.file_modified(' '), {'yellow', 'black'} },
+                { b_components.file_modified('        '), {'yellow', 'black'} },
             }
         else
             return {
@@ -119,7 +119,7 @@ basic.file = {
                 { ' ', '' },
                 { b_components.cache_file_name('N/A', 'short'), { 'red', 'black' } },
                 { ' ', '' },
-                { b_components.file_modified(' '), {'yellow', 'black'} },
+                { b_components.file_modified('        '), {'yellow', 'black'} },
             }
         end
     end,
