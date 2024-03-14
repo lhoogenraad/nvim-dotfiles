@@ -5,11 +5,12 @@ function ColorMyPencils(color)
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
+	vim.cmd([[:highlight LeapBackDrop guifg=#f4cafc guibg=#222222]])
 end
 
 require('hlargs').setup{
 	color = '#45ba8b'
 }
-vim.cmd([[:highlight Nontext guibg=#222222 guifg=#ffffff]])
+
 
 ColorMyPencils()
