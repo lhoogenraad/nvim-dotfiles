@@ -3,6 +3,7 @@ local helper = require('windline.helpers')
 local b_components = require('windline.components.basic')
 local state = _G.WindLine.state
 
+local sep = helper.separators
 local lsp_comps = require('windline.components.lsp')
 local git_comps = require('windline.components.git')
 
@@ -19,37 +20,39 @@ basic.divider = { b_components.divider, '' }
 basic.bg = { ' ', 'StatusLine' }
 
 local colors_mode = {
-    Normal = { 'red', 'black' },
+    Normal = { 'blue', 'black' },
     Insert = { 'green', 'black' },
     Visual = { 'yellow', 'black' },
     Replace = { 'blue_light', 'black' },
-    Command = { 'magenta', 'black' },
+    Command = { 'cyan', 'black' },
 }
 
+colors_mode_bg = {
+	Normal = { 'black', 'blue', 'bold' },
+	Insert = { 'black', 'green', 'bold' },
+	Visual = { 'black', 'yellow', 'bold' },
+	Replace = { 'black', 'blue_light', 'bold' },
+	Command = { 'black', 'cyan', 'bold' },
+	NormalBefore = { 'red', 'black' },
+	InsertBefore = { 'green', 'black' },
+	VisualBefore = { 'yellow', 'black' },
+	ReplaceBefore = { 'blue_light', 'black' },
+	CommandBefore = { 'cyan', 'black' },
+	NormalAfter = { 'white', 'red' },
+	InsertAfter = { 'white', 'green' },
+	VisualAfter = { 'white', 'yellow' },
+	ReplaceAfter = { 'white', 'blue_light' },
+	CommandAfter = { 'white', 'cyan' },
+}
 
 basic.vi_mode = {
     name = 'vi_mode',
-    hl_colors = {
-        Normal = { 'black', 'red', 'bold' },
-        Insert = { 'black', 'green', 'bold' },
-        Visual = { 'black', 'yellow', 'bold' },
-        Replace = { 'black', 'blue_light', 'bold' },
-        Command = { 'black', 'magenta', 'bold' },
-        NormalBefore = { 'red', 'black' },
-        InsertBefore = { 'green', 'black' },
-        VisualBefore = { 'yellow', 'black' },
-        ReplaceBefore = { 'blue_light', 'black' },
-        CommandBefore = { 'magenta', 'black' },
-        NormalAfter = { 'white', 'red' },
-        InsertAfter = { 'white', 'green' },
-        VisualAfter = { 'white', 'yellow' },
-        ReplaceAfter = { 'white', 'blue_light' },
-        CommandAfter = { 'white', 'magenta' },
-    },
+    hl_colors = colors_mode_bg,
     text = function()
         return {
-			{'  ', state.mode[2]},
-            { state.mode[1] .. ' ', state.mode[2] },
+			{ sep.right_filled, state.mode[2] },
+            { '  ' .. state.mode[1] .. '  ', state.mode[2] },
+			{ sep.left_filled, state.mode[2] },
         }
     end,
 }
@@ -57,7 +60,14 @@ basic.vi_mode = {
 basic.square_mode = {
     hl_colors = colors_mode,
     text = function()
-        return { { '▊', state.mode[2] } }
+        return { 
+			{ sep.left_filled, state.mode[2] },
+			{ sep.right_filled, state.mode[2] },
+			{ sep.left_filled, state.mode[2] },
+			{ sep.right_filled, state.mode[2] },
+			{ sep.left_filled, state.mode[2] },
+			{ sep.right_filled, state.mode[2] },
+		}
     end,
 }
 
@@ -86,13 +96,18 @@ basic.file = {
         default = hl_list.Black,
         white = { 'white', 'black' },
         magenta = { 'magenta', 'black' },
+        Normal = { 'blue', 'black',  'bold' },
+        Insert = { 'green', 'black', 'bold' },
+        Visual = { 'yellow','black', 'bold' },
+        Command = { 'cyan', 'black', 'bold' },
     },
     text = function(_, _, width)
         if width > breakpoint_width then
+			print(state.mode[2])
             return {
                 { b_components.cache_file_size(), 'default' },
                 { ' ', '' },
-                { b_components.cache_file_name(), { 'red', 'black' } },
+                { b_components.file_name('N/A', 'short'), state.mode[2] },
                 { b_components.line_col_lua, 'white' },
                 { b_components.progress_lua, '' },
                 { ' ', '' },
@@ -102,7 +117,7 @@ basic.file = {
             return {
                 { b_components.cache_file_size(), 'default' },
                 { ' ', '' },
-                { b_components.cache_file_name('[No Name]', 'Name'), 'magenta' },
+                { b_components.cache_file_name('N/A', 'short'), { 'red', 'black' } },
                 { ' ', '' },
                 { b_components.file_modified(' '), {'yellow', 'black'} },
             }
@@ -197,14 +212,23 @@ basic.lsp_name = {
     end,
 }
 
+
+basic.vi_mode_sep_left = {
+    name = 'vi_mode_sep_left',
+    hl_colors = colors_mode,
+    text = function()
+        return { { sep.right_filled, state.mode[2] } }
+    end,
+}
+
 local default = {
     filetypes = { 'default' },
     active = {
-        basic.square_mode,
         basic.vi_mode,
+		{'   ', {'black', 'black'}},
         basic.file,
         basic.lsp_diagnos,
-		{'  ', ''},
+		{'     ', ''},
         basic.square_mode,
         basic.divider,
         basic.square_mode,
