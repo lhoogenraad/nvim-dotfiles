@@ -1,5 +1,5 @@
 require('highlight-undo').setup({
-  duration = 1500,
+  duration = 2500,
   undo = {
     hlgroup = 'HighlightUndo',
     mode = 'n',

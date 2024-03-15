@@ -12,8 +12,8 @@
             },
         },
         highlight = {
-            underline = true,
-            fg = nil,
-            bg = "#222222",
+            underline = false,
+            fg = "#c3e3f7",
+            bg = "#4d3818",
         },
     })
