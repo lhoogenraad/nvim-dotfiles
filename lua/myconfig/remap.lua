@@ -1,3 +1,9 @@
+-- jj to Esc to normal mode remap
+
+
+local options = { noremap = true }
+vim.keymap.set("i", "jj", "<Esc>", options)
+
 -- :Ex remap
 vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>ll", vim.cmd.Ex)
