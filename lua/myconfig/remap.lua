@@ -15,3 +15,4 @@ vim.keymap.set("n", "<leader>tt", vim.cmd.Twilight)
 
 -- Write and Close file
 vim.keymap.set("n", "<leader>wq", vim.cmd.wq)
+vim.keymap.set("n", "<leader>ww", vim.cmd.w)
