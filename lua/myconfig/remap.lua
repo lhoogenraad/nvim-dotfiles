@@ -21,7 +21,7 @@ local function stopUsingArrowKeys()
 	print("Stop using the damn arrow keys 😡😡😡")
 end
 
-local arrowRemapTable = {"n", "i", "v"}
+local arrowRemapTable = {"n", "v"}
 
 vim.keymap.set(arrowRemapTable, "<Up>", stopUsingArrowKeys)
 vim.keymap.set(arrowRemapTable, "<Down>", stopUsingArrowKeys)
