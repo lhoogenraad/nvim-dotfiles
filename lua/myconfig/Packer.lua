@@ -49,7 +49,16 @@ return require('packer').startup(function(use)
 	use 'folke/twilight.nvim'
 
 	-- visual stuff
-	use 'willothy/veil.nvim'
+	use	{
+		'willothy/veil.nvim',
+		requires = {
+			-- All optional, only required for the default setup.
+			-- If you customize your config, these aren't necessary.
+			"nvim-telescope/telescope.nvim",
+			"nvim-lua/plenary.nvim",
+			"nvim-telescope/telescope-file-browser.nvim"
+		}
+	}
 	use {
 		"windwp/nvim-autopairs",
 		config = function() require("nvim-autopairs").setup {} end
@@ -74,7 +83,6 @@ return require('packer').startup(function(use)
 	})
 	use 'tzachar/highlight-undo.nvim'
 	use 'karb94/neoscroll.nvim'
-	use {"folke/noice.nvim", requires = {"MunifTanjim/nui.nvim", "rcarriga/nvim-notify"}}
 	use 'edluffy/specs.nvim'
 	use 'sontungexpt/stcursorword'
 	use 'ErichDonGubler/lsp_lines.nvim'
@@ -92,8 +100,4 @@ return require('packer').startup(function(use)
 			require("barbecue").setup()
 		end,
 	})
-
-
-	-- chat GPT
-	use 'piersolenski/wtf.nvim'
 end)
