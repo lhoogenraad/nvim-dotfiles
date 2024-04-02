@@ -1,3 +1,22 @@
+local colors = {
+	comments = { fg = "#6e6e6e", bg = "#222222", italic = true},
+	colorColumn = { bg = "#491896"},
+	identifiers = { fg = "#94c6ff" },
+	numbers = { fg = "#9cd16b" },
+	undo = { fg = "#ff000d", bg = "#000000"},
+	redo = { fg = "#00ff0d", bg = "#000000"},
+	leap = { bg = "#030d04" },
+	searchReplace = { bg = "#b3b334", fg = "#6e0519"},
+	search = { bg = "#6e0519", fg = "#adad71"},
+	strings = { fg = "#edb021" },
+	delim = { fg = "#73ff00" },
+	booleans = { fg = "#cb52ff" },
+	functions = { fg = "#ff8a8a" },
+	declarations = { fg = "#dbb951" },
+	conditionals = { fg = "#ff00ee" },
+	loops = { fg = "#43c2c4" },
+}
+
 function ColorMyPencils(color) 
 	color = color or "PaperColor"
 	vim.cmd.colorscheme(color)
@@ -5,12 +24,27 @@ function ColorMyPencils(color)
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
-	vim.cmd([[:highlight LeapBackDrop guifg=#f4cafc guibg=#222222]])
-	vim.cmd([[:hi IncSearch guibg=#47030f guifg=#adad71]])
-	vim.cmd([[:hi Search guibg=#6e0519 guifg=#adad71]])
-	vim.cmd([[:hi HighlightUndo guibg=#b8645e]])
-	vim.cmd([[:hi HighlightRedo guibg=#50913a]])
-	vim.cmd([[:hi ColorColumn guibg=#491896]])
+	vim.api.nvim_set_hl(0, "LeapBackDrop", colors.leap)
+	vim.api.nvim_set_hl(0, "IncSearch", colors.searchReplace)
+	vim.api.nvim_set_hl(0, "Search", colors.search)
+
+	vim.api.nvim_set_hl(0, "HighlightUndo", colors.undo)
+	vim.api.nvim_set_hl(0, "HighlightRedo", colors.redo)
+
+	vim.api.nvim_set_hl(0, "Comment", colors.comments)
+	vim.api.nvim_set_hl(0, "SpecialComment", colors.comments)
+	vim.api.nvim_set_hl(0, "Identifier", colors.identifiers)
+	vim.api.nvim_set_hl(0, "ColorColumn", colors.colorColumn)
+	vim.api.nvim_set_hl(0, "Number", colors.numbers)
+	vim.api.nvim_set_hl(0, "Float", colors.numbers)
+
+	vim.api.nvim_set_hl(0, "String", colors.strings)
+	vim.api.nvim_set_hl(0, "Delimiter", colors.delim)
+	vim.api.nvim_set_hl(0, "Boolean", colors.booleans)
+	vim.api.nvim_set_hl(0, "Function", colors.functions)
+	vim.api.nvim_set_hl(0, "javascriptIdentifier", colors.declarations)
+	vim.api.nvim_set_hl(0, "javascriptConditional", colors.conditionals)
+	vim.api.nvim_set_hl(0, "javascriptRepeat", colors.loops)
 end
 
 require('hlargs').setup{
