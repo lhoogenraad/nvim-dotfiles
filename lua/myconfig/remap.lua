@@ -16,3 +16,14 @@ vim.keymap.set("n", "<leader>tt", vim.cmd.Twilight)
 -- Write and Close file
 vim.keymap.set("n", "<leader>wq", vim.cmd.wq)
 vim.keymap.set("n", "<leader>ww", vim.cmd.w)
+
+local function stopUsingArrowKeys()
+	print("Stop using the damn arrow keys 😡😡😡")
+end
+
+local arrowRemapTable = {"n", "i", "v"}
+
+vim.keymap.set(arrowRemapTable, "<Up>", stopUsingArrowKeys)
+vim.keymap.set(arrowRemapTable, "<Down>", stopUsingArrowKeys)
+vim.keymap.set(arrowRemapTable, "<Left>", stopUsingArrowKeys)
+vim.keymap.set(arrowRemapTable, "<Right>", stopUsingArrowKeys)
