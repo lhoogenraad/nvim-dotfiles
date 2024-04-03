@@ -21,6 +21,9 @@ vim.keymap.set("n", "<leader>cs", vim.cmd.noh)
 vim.keymap.set("n", "<leader>wq", vim.cmd.wq)
 vim.keymap.set("n", "<leader>ww", vim.cmd.w)
 
+-- Ctrl-w remap for window moving
+vim.keymap.set("n", ";", "<C-w>", options)
+
 local function stopUsingArrowKeys()
 	print("Stop using the damn arrow keys 😡😡😡")
 end
