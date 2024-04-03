@@ -19,10 +19,11 @@ vim.keymap.set("n", "<leader>cs", vim.cmd.noh)
 
 -- Write and Close file
 vim.keymap.set("n", "<leader>wq", vim.cmd.wq)
-vim.keymap.set("n", "<leader>ww", vim.cmd.w)
+vim.keymap.set("n", "<leader>ww", vim.cmd.w, options)
 
 -- Ctrl-w remap for window moving
--- vim.keymap.set("n", ";", "<C-w>", options)
+vim.keymap.set("n", ";", "<C-w>", options)
+vim.keymap.set("n", ";v", vim.cmd.vsplit, options)
 
 -- Paste last yank in register regardless of deleting
 vim.keymap.set("n", "<leader>p", "\"0p")
