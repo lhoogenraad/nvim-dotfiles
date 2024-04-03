@@ -24,8 +24,12 @@ vim.keymap.set("n", "<leader>ww", vim.cmd.w)
 -- Ctrl-w remap for window moving
 vim.keymap.set("n", ";", "<C-w>", options)
 
+-- Paste last yank in register
+vim.keymap.set("n", "<leader>p", "\"0p")
+
 local function stopUsingArrowKeys()
 	print("Stop using the damn arrow keys 😡😡😡")
+local function stopUsingArrowKeys()
 end
 
 local arrowRemapTable = {"n", "v"}
