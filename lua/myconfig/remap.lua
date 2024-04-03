@@ -24,12 +24,23 @@ vim.keymap.set("n", "<leader>ww", vim.cmd.w, options)
 -- Ctrl-w remap for window moving
 vim.keymap.set("n", ";", "<C-w>", options)
 vim.keymap.set("n", ";v", vim.cmd.vsplit, options)
+vim.keymap.set("n", "<C-w>", "<nop>")
 
 -- Paste last yank in register regardless of deleting
 vim.keymap.set("n", "<leader>p", "\"0p")
 
 -- Formats entire current file. Shift= is keypress
 vim.keymap.set("n", "<leader>fa", "mtgg=G't", options)
+
+-- Brings search results to centre of screen
+vim.keymap.set("n", "n", "nzz", options)
+vim.keymap.set("n", "N", "Nzz", options)
+
+-- Makes new set of curly braces and goes to centre e.g.
+-- {
+-- 		_Goes here_
+-- }
+vim.keymap.set("i", "<M-{>", "{<CR><CR>}<UP><C-f>");
 
 local function stopUsingArrowKeys()
 	print("Stop using the damn arrow keys 😡😡😡")
