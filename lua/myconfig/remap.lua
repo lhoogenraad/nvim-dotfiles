@@ -42,8 +42,8 @@ vim.keymap.set("n", "N", "Nzz", options)
 vim.keymap.set("i", "<M-{>", "{<CR><CR>}<UP><C-f>");
 
 -- Remap arrow keys to navigate around buffer windows
-local arrowRemapTable = {"n", "v"}
-vim.keymap.set(arrowRemapTable, "<Up>", ";k")
-vim.keymap.set(arrowRemapTable, "<Down>", ";j")
-vim.keymap.set(arrowRemapTable, "<Left>", ";h")
-vim.keymap.set(arrowRemapTable, "<Right>", ";l")
+local arrowRemapTable = {"n", "v", "i"}
+vim.keymap.set(arrowRemapTable, "<Up>", "<C-W>k")
+vim.keymap.set(arrowRemapTable, "<Down>", "<C-W>j")
+vim.keymap.set(arrowRemapTable, "<Left>", "<C-W>h")
+vim.keymap.set(arrowRemapTable, "<Right>", "<C-W>l")
