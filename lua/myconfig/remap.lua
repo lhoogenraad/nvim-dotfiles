@@ -22,14 +22,16 @@ vim.keymap.set("n", "<leader>wq", vim.cmd.wq)
 vim.keymap.set("n", "<leader>ww", vim.cmd.w)
 
 -- Ctrl-w remap for window moving
-vim.keymap.set("n", ";", "<C-w>", options)
+-- vim.keymap.set("n", ";", "<C-w>", options)
 
--- Paste last yank in register
+-- Paste last yank in register regardless of deleting
 vim.keymap.set("n", "<leader>p", "\"0p")
+
+-- Formats entire current file. Shift= is keypress
+vim.keymap.set("n", "<leader>fa", "mtgg=G't", options)
 
 local function stopUsingArrowKeys()
 	print("Stop using the damn arrow keys 😡😡😡")
-local function stopUsingArrowKeys()
 end
 
 local arrowRemapTable = {"n", "v"}
