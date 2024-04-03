@@ -3,6 +3,7 @@
 
 local options = { noremap = true }
 vim.keymap.set("i", "jj", "<Esc>", options)
+vim.keymap.set("i", "jw", "<Esc>:w<CR>", options)
 vim.keymap.set("i", "<Esc>", "<nop>", options)
 vim.g.mapleader = " "
 
