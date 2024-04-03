@@ -41,13 +41,9 @@ vim.keymap.set("n", "N", "Nzz", options)
 -- }
 vim.keymap.set("i", "<M-{>", "{<CR><CR>}<UP><C-f>");
 
-local function stopUsingArrowKeys()
-	print("Stop using the damn arrow keys 😡😡😡")
-end
-
+-- Remap arrow keys to navigate around buffer windows
 local arrowRemapTable = {"n", "v"}
-
-vim.keymap.set(arrowRemapTable, "<Up>", stopUsingArrowKeys)
-vim.keymap.set(arrowRemapTable, "<Down>", stopUsingArrowKeys)
-vim.keymap.set(arrowRemapTable, "<Left>", stopUsingArrowKeys)
-vim.keymap.set(arrowRemapTable, "<Right>", stopUsingArrowKeys)
+vim.keymap.set(arrowRemapTable, "<Up>", ";k")
+vim.keymap.set(arrowRemapTable, "<Down>", ";j")
+vim.keymap.set(arrowRemapTable, "<Left>", ";h")
+vim.keymap.set(arrowRemapTable, "<Right>", ";l")
