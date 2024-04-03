@@ -1,7 +1,6 @@
--- jj to Esc to normal mode remap
-
-
 local options = { noremap = true }
+
+-- Mappings to escape insert mode in some fashion
 vim.keymap.set("i", "jj", "<Esc>", options)
 vim.keymap.set("i", "jw", "<Esc>:w<CR>", options)
 vim.keymap.set("i", "<Esc>", "<nop>", options)
