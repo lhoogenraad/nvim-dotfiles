@@ -47,3 +47,7 @@ vim.keymap.set(arrowRemapTable, "<Up>", "<C-W>k")
 vim.keymap.set(arrowRemapTable, "<Down>", "<C-W>j")
 vim.keymap.set(arrowRemapTable, "<Left>", "<C-W>h")
 vim.keymap.set(arrowRemapTable, "<Right>", "<C-W>l")
+
+-- Go back to alternate file
+vim.api.nvim_set_keymap('n', '<bs>', '<c-^>\'”zz', { silent = true, noremap = true })
+
