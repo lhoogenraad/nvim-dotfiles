@@ -3,6 +3,7 @@ local options = { noremap = true }
 -- Mappings to escape insert mode in some fashion
 vim.keymap.set("i", "jj", "<Esc>", options)
 vim.keymap.set("i", "jw", "<Esc>:w<CR>", options)
+vim.keymap.set("i", "jk", "<Esc>u", options)
 vim.keymap.set("i", "<Esc>", "<nop>", options)
 vim.g.mapleader = " "
 
@@ -42,7 +43,7 @@ vim.keymap.set("n", "N", "Nzz", options)
 vim.keymap.set("i", "<M-{>", "{<CR><CR>}<UP><C-f>");
 
 -- Remap arrow keys to navigate around buffer windows
-local arrowRemapTable = {"n", "v", "i"}
+local arrowRemapTable = {"n", "v"}
 vim.keymap.set(arrowRemapTable, "<Up>", "<C-W>k")
 vim.keymap.set(arrowRemapTable, "<Down>", "<C-W>j")
 vim.keymap.set(arrowRemapTable, "<Left>", "<C-W>h")
