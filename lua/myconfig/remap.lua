@@ -3,15 +3,18 @@
 
 local options = { noremap = true }
 vim.keymap.set("i", "jj", "<Esc>", options)
+vim.keymap.set("i", "<Esc>", "<nop>", options)
+vim.g.mapleader = " "
 
 -- :Ex remap
-vim.g.mapleader = " "
 vim.keymap.set("n", "<leader>ll", vim.cmd.Ex)
 
 -- :bw remap
 vim.keymap.set("n", "<leader>bb", vim.cmd.bw)
 vim.keymap.set("n", "<leader>tt", vim.cmd.Twilight)
 
+-- :noh remap
+vim.keymap.set("n", "<leader>cs", vim.cmd.noh)
 
 -- Write and Close file
 vim.keymap.set("n", "<leader>wq", vim.cmd.wq)

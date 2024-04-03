@@ -6,6 +6,7 @@ local colors = {
 	undo = { fg = "#ff000d", bg = "#000000"},
 	redo = { fg = "#00ff0d", bg = "#000000"},
 	leap = { bg = "#030d04" },
+	leapMatch = { fg = "#96fdff" },
 	searchReplace = { bg = "#b3b334", fg = "#6e0519"},
 	search = { bg = "#6e0519", fg = "#adad71"},
 	strings = { fg = "#edb021" },
@@ -25,6 +26,7 @@ function ColorMyPencils(color)
 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
 	vim.api.nvim_set_hl(0, "LeapBackDrop", colors.leap)
+	vim.api.nvim_set_hl(0, "LeapMatch", colors.leapMatch)
 	vim.api.nvim_set_hl(0, "IncSearch", colors.searchReplace)
 	vim.api.nvim_set_hl(0, "Search", colors.search)
 
