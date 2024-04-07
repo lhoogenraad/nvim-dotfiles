@@ -52,3 +52,5 @@ vim.keymap.set(arrowRemapTable, "<Right>", "<C-W>l")
 -- Go back to alternate file
 vim.api.nvim_set_keymap('n', '<bs>', '<c-^>\'”zz', { silent = true, noremap = true })
 
+-- LSP AutoCmp
+vim.keymap.set("i", "<C-z>", "<C-p>", options)
