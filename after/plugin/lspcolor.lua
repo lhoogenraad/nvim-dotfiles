@@ -1,7 +1,7 @@
--- Lua
-require("lsp-colors").setup({
-  Error = "#6e2e0b",
-  Warning = "#e0af68",
-  Information = "#0db9d7",
-  Hint = "#10B981"
-})
+-- -- Lua
+-- require("lsp-colors").setup({
+--   Error = "#6e2e0b",
+--   Warning = "#e0af68",
+--   Information = "#0db9d7",
+--   Hint = "#10B981"
+-- })
