@@ -57,4 +57,4 @@ vim.keymap.set("i", "<C-z>", "<C-p>", options)
 
 
 -- Try-Catch macros
-vim.keymap.set("n", "<leader>tc", "itry {<CR><CR>} catch (error) {<CR><CR>}<Up><Up><Up><Tab>")
+vim.keymap.set("n", "<leader>tc", "itry {<CR><CR>} catch (error) {<CR><CR>}<C-c>vkkkk=jcc")
