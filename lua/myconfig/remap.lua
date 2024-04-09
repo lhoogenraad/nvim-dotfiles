@@ -54,3 +54,7 @@ vim.api.nvim_set_keymap('n', '<bs>', '<c-^>\'”zz', { silent = true, noremap = 
 
 -- LSP AutoCmp
 vim.keymap.set("i", "<C-z>", "<C-p>", options)
+
+
+-- Try-Catch macros
+vim.keymap.set("n", "<leader>tc", "itry {<CR><CR>} catch (error) {<CR><CR>}<Up><Up><Up><Tab>")
