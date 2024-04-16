@@ -1,6 +1,7 @@
 -- Formatting
 vim.wo.number = true
 vim.wo.relativenumber = true
+vim.wo.wrap = true
 vim.o.termguicolors = true
 vim.o.scrolloff = 10
 vim.opt.colorcolumn="100"
