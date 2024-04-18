@@ -82,7 +82,6 @@ return require('packer').startup(function(use)
 		end
 	})
 	use 'tzachar/highlight-undo.nvim'
-	use 'karb94/neoscroll.nvim'
 	use 'edluffy/specs.nvim'
 	use 'sontungexpt/stcursorword'
 	use 'ErichDonGubler/lsp_lines.nvim'

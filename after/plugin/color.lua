@@ -53,9 +53,16 @@ function ColorMyPencils(color)
 	vim.api.nvim_set_hl(0, "CursorLine", colors.cursorline)
 end
 
+function SetBgOpaque(color)
+	color = color or "#210114"
+	vim.api.nvim_set_hl(0, "Normal", { bg = color })
+	vim.api.nvim_set_hl(0, "NormalFloat", { bg = color })
+end
+
 require('hlargs').setup{
 	color = '#45ba8b'
 }
 
 
 ColorMyPencils()
+
