@@ -16,12 +16,14 @@ local colors = {
 	declarations = { fg = "#dbb951" },
 	conditionals = { fg = "#ff00ee" },
 	loops = { fg = "#43c2c4" },
+	cursorline = { bg = "#442278" }
 }
 
 function ColorMyPencils(color) 
-	color = color or "PaperColor"
+	color = color or "tokyonight"
 	vim.cmd.colorscheme(color)
 
+	vim.cmd([[set cursorline]])
 	vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
 	vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })
 
@@ -47,6 +49,8 @@ function ColorMyPencils(color)
 	vim.api.nvim_set_hl(0, "javascriptIdentifier", colors.declarations)
 	vim.api.nvim_set_hl(0, "javascriptConditional", colors.conditionals)
 	vim.api.nvim_set_hl(0, "javascriptRepeat", colors.loops)
+
+	vim.api.nvim_set_hl(0, "CursorLine", colors.cursorline)
 end
 
 require('hlargs').setup{
