@@ -107,7 +107,7 @@ basic.file = {
             return {
                 { b_components.cache_file_size(), 'default' },
                 { ' ', '' },
-                { b_components.file_name('N/A', 'short'), state.mode[2] },
+                { b_components.full_file_name, state.mode[2] },
                 { b_components.line_col_lua, 'white' },
                 { b_components.progress_lua, '' },
                 { ' ', '' },
@@ -115,8 +115,6 @@ basic.file = {
             }
         else
             return {
-                { b_components.cache_file_size(), 'default' },
-                { ' ', '' },
                 { b_components.cache_file_name('N/A', 'short'), { 'red', 'black' } },
                 { ' ', '' },
                 { b_components.file_modified('        '), {'yellow', 'black'} },
@@ -245,6 +243,7 @@ local default = {
         basic.file_name_inactive,
         basic.divider,
         basic.divider,
+        { git_comps.git_branch(), { 'black', 'InactiveBg' }, breakpoint_width },
         { b_components.line_col, hl_list.Inactive },
         { b_components.progress, hl_list.Inactive },
     },

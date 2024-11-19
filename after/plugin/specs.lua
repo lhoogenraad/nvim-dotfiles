@@ -11,7 +11,5 @@ require('specs').setup{
         resizer = require('specs').slider_resizer,
     },
     ignore_filetypes = {},
-    ignore_buftypes = {
-        nofile = true,
-    },
+    ignore_buftypes = {},
 }
