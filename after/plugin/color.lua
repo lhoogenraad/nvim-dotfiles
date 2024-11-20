@@ -1,6 +1,6 @@
 local colors = {
 	comments = { fg = "#6e6e6e", bg = "#222222", italic = true},
-	colorColumn = { bg = "#491896"},
+	colorColumn = { bg = "#910002"},
 	identifiers = { fg = "#94c6ff" },
 	numbers = { fg = "#9cd16b" },
 	undo = { fg = "#ff000d", bg = "#000000"},
@@ -16,11 +16,11 @@ local colors = {
 	declarations = { fg = "#dbb951" },
 	conditionals = { fg = "#ff00ee" },
 	loops = { fg = "#43c2c4" },
-	cursorline = { bg = "#442278" }
+	cursorline = { bg = "#280e47" }
 }
 
 function ColorMyPencils(color) 
-	color = color or "tokyonight"
+	color = color or "PaperColor"
 	vim.cmd.colorscheme(color)
 
 	vim.cmd([[set cursorline]])
