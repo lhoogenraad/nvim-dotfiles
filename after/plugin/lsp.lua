@@ -19,7 +19,7 @@ end)
 
 require('mason').setup({})
 require('mason-lspconfig').setup({
-	ensure_installed = {'tsserver', 'rust_analyzer'},
+	ensure_installed = {'lua_ls', 'rust_analyzer'},
 	handlers = {
 		lsp_zero.default_setup,
 		lua_ls = function()
@@ -34,9 +34,7 @@ local cmp_select = {behavior = cmp.SelectBehavior.Select}
 
 cmp.setup({
 	sources = {
-		{name = 'path'},
 		{name = 'nvim_lsp'},
-		{name = 'nvim_lua'},
 	},
 	formatting = lsp_zero.cmp_format(),
 	mapping = cmp.mapping.preset.insert({

@@ -5,21 +5,19 @@ return require('packer').startup(function(use)
 	use 'wbthomason/packer.nvim'
 
 	-- TS
-    use {
-        'nvim-treesitter/nvim-treesitter',
-        run = ':TSUpdate'
-    }
+	use {
+		'nvim-treesitter/nvim-treesitter',
+		run = ':TSUpdate'
+	}
 	use {
 		'VonHeikemen/lsp-zero.nvim',
-		branch = 'v3.x',
+		branch = 'v4.x',
 		requires = {
 			--- Uncomment these if you want to manage LSP servers from neovim
 			{'williamboman/mason.nvim'},
 			{'williamboman/mason-lspconfig.nvim'},
 
-			-- LSP Support
 			{'neovim/nvim-lspconfig'},
-			-- Autocompletion
 			{'hrsh7th/nvim-cmp'},
 			{'hrsh7th/cmp-nvim-lsp'},
 			{'L3MON4D3/LuaSnip'},
@@ -30,7 +28,7 @@ return require('packer').startup(function(use)
 	use 'lewis6991/gitsigns.nvim'
 	use 'akinsho/git-conflict.nvim'
 	use 'tpope/vim-fugitive'
-	
+
 	-- file/buffer navigation
 	use {
 		'nvim-telescope/telescope.nvim', tag = '0.1.4',
