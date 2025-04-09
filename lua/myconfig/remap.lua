@@ -61,3 +61,23 @@ vim.keymap.set("n", "<leader>tc", "otry {<CR><CR>} catch (error) {<CR><CR>}<C-c>
 
 -- next greatest remap ever : asbjornHaland
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
+
+
+-- Toggling lsp errors
+vim.keymap.set("n", "<leader>ls", function()
+  vim.diagnostic.config({
+	virtual_text = not vim.diagnostic.config().virtual_text,
+  })
+end, { desc = "Show diagnostic" })
+
+
+-- Disable copilot
+vim.keymap.set("n", "<leader>cpd", function()
+  vim.cmd("Copilot disable")
+end, { desc = "Disable copilot" })
+
+
+-- Enable copilot
+vim.keymap.set("n", "<leader>cpe", function()
+  vim.cmd("Copilot enable")
+end, { desc = "Enable copilot" })
