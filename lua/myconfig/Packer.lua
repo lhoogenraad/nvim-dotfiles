@@ -98,4 +98,5 @@ return require('packer').startup(function(use)
 		end,
 	})
 	use 'github/copilot.vim'
+	use 'norcalli/nvim-colorizer.lua'
 end)
