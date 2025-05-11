@@ -9,6 +9,7 @@ return require('packer').startup(function(use)
 		'nvim-treesitter/nvim-treesitter',
 		run = ':TSUpdate'
 	}
+	use 'neovim/nvim-lspconfig'
 	use {
 		'VonHeikemen/lsp-zero.nvim',
 		branch = 'v4.x',

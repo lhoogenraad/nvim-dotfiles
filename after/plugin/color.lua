@@ -5,7 +5,7 @@ local colors = {
 	numbers = { fg = "#9cd16b" },
 	undo = { fg = "#ff000d", bg = "#000000"},
 	redo = { fg = "#00ff0d", bg = "#000000"},
-	leap = { bg = "#030d04" },
+	leap = { bg = "#1e0724" },
 	leapMatch = { fg = "#96fdff" },
 	searchReplace = { bg = "#b3b334", fg = "#6e0519"},
 	search = { bg = "#6e0519", fg = "#adad71"},
