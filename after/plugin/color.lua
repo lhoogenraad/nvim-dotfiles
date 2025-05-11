@@ -19,7 +19,7 @@ local colors = {
 	cursorline = { bg = "#280e47" }
 }
 
-function ColorMyPencils(color) 
+function ColorMyPencils(color)
 	color = color or "PaperColor"
 	vim.cmd.colorscheme(color)
 
