@@ -59,6 +59,9 @@ vim.keymap.set("i", "<C-z>", "<C-p>", options)
 -- Try-Catch macros
 vim.keymap.set("n", "<leader>tc", "otry {<CR><CR>} catch (error) {<CR><CR>}<C-c>vkkkk=jcc")
 
+-- Replace current line with yank buffer
+vim.keymap.set("n", "<leader>rp", 'dd"0P', { noremap = true, silent = true })
+
 -- next greatest remap ever : asbjornHaland
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 
