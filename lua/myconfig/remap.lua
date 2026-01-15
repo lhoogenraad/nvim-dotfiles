@@ -84,3 +84,7 @@ end, { desc = "Disable copilot" })
 vim.keymap.set("n", "<leader>cpe", function()
   vim.cmd("Copilot enable")
 end, { desc = "Enable copilot" })
+
+vim.keymap.set("n", "<leader>pwd", function ()
+	vim.cmd("!pwd")
+end, {desc = "Print working directory"})
