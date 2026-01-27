@@ -37,7 +37,7 @@ return require('packer').startup(function(use)
 		requires = { {'nvim-lua/plenary.nvim'} }
 	}
 	use 'ThePrimeagen/harpoon'
-	use 'ggandor/leap.nvim'
+	use 'https://codeberg.org/andyg/leap.nvim'
 	use 'mbbill/undotree'
 
 	-- Colour themes
