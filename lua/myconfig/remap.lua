@@ -62,7 +62,7 @@ vim.keymap.set("n", "<leader>tc", "otry {<CR><CR>} catch (error) {<CR><CR>}<C-c>
 -- Replace current line with yank buffer
 vim.keymap.set("n", "<leader>rp", 'dd"0P', { noremap = true, silent = true })
 
--- next greatest remap ever : asbjornHaland
+-- Yank to clipboard
 vim.keymap.set({"n", "v"}, "<leader>y", [["+y]])
 
 
@@ -72,18 +72,6 @@ vim.keymap.set("n", "<leader>ls", function()
 	virtual_text = not vim.diagnostic.config().virtual_text,
   })
 end, { desc = "Show diagnostic" })
-
-
--- Disable copilot
-vim.keymap.set("n", "<leader>cpd", function()
-  vim.cmd("Copilot disable")
-end, { desc = "Disable copilot" })
-
-
--- Enable copilot
-vim.keymap.set("n", "<leader>cpe", function()
-  vim.cmd("Copilot enable")
-end, { desc = "Enable copilot" })
 
 vim.keymap.set("n", "<leader>wd", function ()
 	vim.cmd("!pwd")
