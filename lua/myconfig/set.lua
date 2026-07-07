@@ -8,3 +8,4 @@ vim.o.scrolloff = 10
 vim.opt.colorcolumn="90"
 vim.opt["tabstop"] = 2
 vim.opt["shiftwidth"] = 2
+vim.opt.expandtab = true
