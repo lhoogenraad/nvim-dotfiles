@@ -20,6 +20,15 @@ vim.keymap.set("n", "<leader>cs", vim.cmd.noh)
 -- Write and Close file
 vim.keymap.set("n", "<leader>wq", vim.cmd.wq)
 vim.keymap.set("n", "<leader>ww", vim.cmd.w, options)
+vim.keymap.set("n", "<leader>wl", function ()
+  vim.cmd.w()
+  vim.cmd("Ex")
+end, options)
+vim.keymap.set("i", "jl", function ()
+  vim.cmd.stopinsert()
+  vim.cmd.w()
+  vim.cmd("Ex")
+end, options)
 
 -- Ctrl-w remap for window moving
 vim.keymap.set("n", ";", "<C-w>", options)

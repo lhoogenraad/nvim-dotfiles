@@ -88,10 +88,13 @@ return require('packer').startup(function(use)
     use 'windwp/windline.nvim'
 
     use {
-        'numToStr/Comment.nvim',
-        config = function()
-            require('Comment').setup()
-        end,
+      "folke/ts-comments.nvim",
+      requires = {
+        "nvim-treesitter/nvim-treesitter",
+      },
+      config = function()
+        require("ts-comments").setup()
+      end,
     }
 
     use 'nvim-tree/nvim-web-devicons'
