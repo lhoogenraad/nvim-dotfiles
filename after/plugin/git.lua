@@ -42,6 +42,11 @@ vim.keymap.set("n", "<leader>mm", function()
 			vim.cmd.Git('checkout -');
 			vim.cmd.Git('merge main');
         end)
+-- Opens Pull Request for current branch into main origin
+-- Requires pr-open bin lib to exist on PATH
+vim.keymap.set("n", "<leader>pr", function()
+            vim.cmd("!pr-open");
+        end)
 
 
 local ThePrimeagen_Fugitive = vim.api.nvim_create_augroup("ThePrimeagen_Fugitive", {})
