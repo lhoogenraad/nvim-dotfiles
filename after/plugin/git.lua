@@ -44,7 +44,7 @@ vim.keymap.set("n", "<leader>mm", function()
         end)
 -- Opens Pull Request for current branch into main origin
 -- Requires pr-open bin lib to exist on PATH
-vim.keymap.set("n", "<leader>pr", function()
+vim.keymap.set("n", "<leader>r", function()
             vim.cmd("!pr-open");
         end)
 
