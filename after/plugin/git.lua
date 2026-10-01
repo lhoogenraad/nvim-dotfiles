@@ -47,7 +47,9 @@ vim.keymap.set("n", "<leader>mm", function()
 vim.keymap.set("n", "<leader>r", function()
             vim.cmd("!pr-open");
         end)
-
+vim.keymap.set("n", "<leader>gc-", function()
+            vim.cmd("Git checkout -")
+        end)
 
 local ThePrimeagen_Fugitive = vim.api.nvim_create_augroup("ThePrimeagen_Fugitive", {})
 
